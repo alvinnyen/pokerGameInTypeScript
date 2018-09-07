@@ -8,4 +8,8 @@ class Deck {
             }
         }
     }
+
+    public shuffle (): void {
+        this.cards.sort(() => Math.floor(Math.random() * 3 - 1)); // ??? check the result of random
+    }
 }   
