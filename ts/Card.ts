@@ -30,7 +30,15 @@ class Card {
         'King'
     ];
 
-    public getRankName (): string {
+    public get rankName (): string { // ??? 為什麼get空一格???
         return Card.rankNames[this.rank - 1];
+    }
+
+    public get suitName (): string { // ??? 為什麼get空一格???
+        return Suit[this.suit]; // ???
+    }
+
+    public get name (): string { // ??? 為什麼get空一格???
+        return `${this.rankName} of ${this.suitName}`;
     }
 }
