@@ -12,4 +12,8 @@ class Deck {
     public shuffle (): void {
         this.cards.sort(() => Math.floor(Math.random() * 3 - 1)); // ??? check the result of random
     }
+
+    public draw (): Card {
+        return <Card> this.cards.shift();
+    }
 }   
