@@ -101,7 +101,7 @@ class Hand {
         if (this.isFlush()) {
             return {
                 handRank: HandRankings.FLUSH,
-                scroingCards: this.cards,
+                scoringCards: this.cards,
             };
         }
 
@@ -115,7 +115,7 @@ class Hand {
         if (this.has3()) {
             return {
                 handRank: HandRankings.THREE_OF_A_KIND,
-                scroingCards: this.cards,
+                scoringCards: this.cards,
             }
         }
 
