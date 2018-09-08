@@ -111,5 +111,31 @@ class Hand {
                 scoringCards: this.cards,
             };
         }
+
+        if (this.has3()) {
+            return {
+                handRank: HandRankings.THREE_OF_A_KIND,
+                scroingCards: this.cards,
+            }
+        }
+
+        if (this.has2Pair()) {
+            return {
+                handRank: HandRankings.TWO_PAIR,
+                scoringCards: this.cards,
+            }
+        }
+
+        if (this.has2() && this.jacksOrBetter()) {
+            return {
+                handRank: HandRankings.JACKS_OR_BETTER,
+                scoringCards: this.cards,
+            }
+        }
+
+        return {
+            handRank: HandRankings.NOTHING,
+            scoringCards: [],
+        }
     }
 }
