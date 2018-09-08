@@ -75,27 +75,41 @@ class Hand {
                     handRank: HandRankings.Royal_FLUSH,
                     scoringCards: this.cards,
                 }
-            }
+            };
 
             // Straight Flush
             return {
                 handRank: HandRankings.STRAIGHT_FLUSH,
                 scoringCards: this.cards,
-            }
+            };
         }
 
-        if (has4()) {
+        if (this.has4()) {
             return {
                 handRank: HandRankings.FOUR_OF_A_KIND,
                 scoringCards: ,
-            }
+            };
         }
 
-        if (has3() && has2()) {
+        if (this.has3() && this.has2()) {
             return {
                 handRank: HandRankings.FULL_HOUSE,
                 scoringCards: this.cards,
-            }
+            };
+        }
+
+        if (this.isFlush()) {
+            return {
+                handRank: HandRankings.FLUSH,
+                scroingCards: this.cards,
+            };
+        }
+
+        if (this.isStraight()) {
+            return {
+                handRank: HandRankings.STRAIGHT,
+                scoringCards: this.cards,
+            };
         }
     }
 }
