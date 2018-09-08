@@ -83,5 +83,19 @@ class Hand {
                 scoringCards: this.cards,
             }
         }
+
+        if (has4()) {
+            return {
+                handRank: HandRankings.FOUR_OF_A_KIND,
+                scoringCards: ,
+            }
+        }
+
+        if (has3() && has2()) {
+            return {
+                handRank: HandRankings.FULL_HOUSE,
+                scoringCards: this.cards,
+            }
+        }
     }
 }
