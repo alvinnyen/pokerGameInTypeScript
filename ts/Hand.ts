@@ -4,7 +4,7 @@ interface HandRank {
 };
 
 interface Score {
-    rank: HandRank,
+    handRank: HandRank,
     scoringCards: Card[],
 }
 
@@ -61,6 +61,27 @@ class Hand {
             this.cards = cards;
         } else {
             this.cards = [];
+        }
+    }
+
+    public getScore (): Score {
+        // flush: all cards with the same suit
+        // straight: all cards of sequential rank
+
+        if (this.isFlush() && this.isStraight()) {
+            if (this.has(10, 11, 12, 13, 1)) {
+                // Royal Flush
+                return {
+                    handRank: HandRankings.Royal_FLUSH,
+                    scoringCards: this.cards,
+                }
+            }
+
+            // Straight Flush
+            return {
+                handRank: HandRankings.STRAIGHT_FLUSH,
+                scoringCards: this.cards,
+            }
         }
     }
 }
