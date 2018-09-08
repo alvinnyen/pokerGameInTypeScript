@@ -52,3 +52,15 @@ let HandRankings: {
         payout: 0,
     },
 };
+
+class Hand {
+    private cards: Card[];
+
+    public constructor (cards?: Card[]) { // !! 注意 question mark 是 for 不一定會有該parameter的定義
+        if (cards) { // 因為? ，所以必須做這層確認
+            this.cards = cards;
+        } else {
+            this.cards = [];
+        }
+    }
+}
