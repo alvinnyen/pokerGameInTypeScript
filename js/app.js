@@ -48,6 +48,27 @@ var Card = /** @class */ (function () {
     ];
     return Card;
 }());
-var c = new Card(6, Suit.Diamonds);
+var Deck = /** @class */ (function () {
+    function Deck() {
+        this.cards = [];
+        for (var s = 0; s < 4; s++) {
+            for (var r = 1; r <= 13; r++) {
+                this.cards.push(new Card(r, s));
+            }
+        }
+    }
+    Deck.prototype.shuffle = function () {
+        this.cards.sort(function () { return Math.floor(Math.random() * 3 - 1); }); // ??? check the result of random
+    };
+    Deck.prototype.draw = function () {
+        return this.cards.shift();
+    };
+    return Deck;
+}());
+var c = new Card(1, Suit.Diamonds);
 console.log(c.name);
+console.log();
+var d = new Deck();
+d.shuffle();
+console.log(d.draw().name);
 //# sourceMappingURL=app.js.map
