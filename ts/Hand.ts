@@ -64,10 +64,33 @@ class Hand {
         }
     }
 
-    public isFlush (): boolean  {
+    private isFlush (): boolean  {
         let suit = this.cards[0].suit;
 
         return this.cards.every(c => c.suit === suit); // check array.every
+    }
+
+    public isStraight (): boolean {
+        let low;
+        let high;
+        const ranks: number[] = [];
+        
+        low = high = this.cards[0].rank;
+
+        // check if duplicate ranks exist
+        for (let i = 1; i < this.cards.length; i++) {
+            let rank = this.cards[i].rank;
+            
+            if (ranks.indexOf(rank) !== -1) return false;
+            ranks.push(rank);
+            
+            if (rank > high) high = rank;
+            if (rank < low) low = rank;
+        }
+
+
+        // check if poker straight
+        return high - low === 4;
     }
 
     // public getScore (): Score {
