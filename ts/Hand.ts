@@ -53,6 +53,11 @@ let HandRankings: {
     },
 };
 
+interface KindGroup {
+    cards: Card[],
+    rank: number,
+};
+
 class Kinds {
     private kinds: {
         [rank: number]: Card[], // 再熟悉object property的type definition
@@ -71,6 +76,24 @@ class Kinds {
             this.kinds[rank].push(c);
         });
     }
+
+    public has (numOfKind: number): KindGroup[] { // 有幾張一樣的
+        let result: KindGroup[] = [];
+        const ranksInKinds = Object.keys(this.kinds);
+
+        for (let i = 0; i < ranksInKinds.length; i++) {
+            const rank = ranksInKinds[i];
+
+            if (this.kinds[rank].length === numOfKind) {
+                result.push({
+                    cards: this.kinds[rank],
+                    rank: +rank,
+                });
+            }
+        }
+
+        return result;
+    }    
 }
 
 class Hand {
