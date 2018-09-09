@@ -53,6 +53,26 @@ let HandRankings: {
     },
 };
 
+class Kinds {
+    private kinds: {
+        [rank: number]: Card[], // 再熟悉object property的type definition
+    };
+
+    public constructor (cards: Card[]) {
+        this.kinds = {};
+
+        cards.forEach(c => { // 再check array.forEach 及 它的優缺點
+            const rank = c.rank;
+
+            if (!this.kinds[rank]) {
+                this.kinds[rank] = [];
+            }
+
+            this.kinds[rank].push(c);
+        });
+    }
+}
+
 class Hand {
     private cards: Card[];
 
