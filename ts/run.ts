@@ -16,11 +16,11 @@
 // ]);
 
 let hand2 = new Hand([
-    new Card(4, Suit.Diamonds),
-    new Card(5, Suit.Diamonds),
-    new Card(6, Suit.Diamonds),
-    new Card(7, Suit.Diamonds),
-    new Card(8, Suit.Diamonds),
+    new Card(1, Suit.Diamonds),
+    new Card(1, Suit.Diamonds),
+    new Card(10, Suit.Diamonds),
+    new Card(12, Suit.Diamonds),
+    new Card(13, Suit.Diamonds),
 ]);
 
 // console.log(hand1.isFlush());

@@ -126,13 +126,36 @@ var Hand = /** @class */ (function () {
         var suit = this.cards[0].suit;
         return this.cards.every(function (c) { return c.suit === suit; }); // check array.every
     };
-    Hand.prototype.isStraight = function () {
+    Hand.prototype.isAceHighStraight = function () {
+        var low;
+        var high;
+        var ranks = [];
+        var cardRanks = this.cards.map(function (c) { return c.rank; });
+        var firstIndexOfRank1 = cardRanks.indexOf(1);
+        cardRanks[firstIndexOfRank1] = 14;
+        low = high = cardRanks[0];
+        // check if duplicate rank exists
+        for (var i = 0; i < cardRanks.length; i++) {
+            if (cardRanks[i] === 1)
+                cardRanks[i] = 14;
+            if (ranks.indexOf(cardRanks[i]) !== -1)
+                return false;
+            ranks.push(cardRanks[i]);
+            if (cardRanks[i] > high)
+                high = cardRanks[i];
+            if (cardRanks[i] < low)
+                low = cardRanks[i];
+        }
+        // check if poker straight
+        return high - low === 4;
+    };
+    Hand.prototype.isAceLowStraight = function () {
         var low;
         var high;
         var ranks = [];
         low = high = this.cards[0].rank;
-        // check if duplicate ranks exist
-        for (var i = 1; i < this.cards.length; i++) {
+        // check if duplicate rank exists
+        for (var i = 0; i < this.cards.length; i++) {
             var rank = this.cards[i].rank;
             if (ranks.indexOf(rank) !== -1)
                 return false;
@@ -144,6 +167,9 @@ var Hand = /** @class */ (function () {
         }
         // check if poker straight
         return high - low === 4;
+    };
+    Hand.prototype.isStraight = function () {
+        return this.isAceHighStraight() || this.isAceLowStraight();
     };
     return Hand;
 }());
@@ -161,11 +187,11 @@ var Hand = /** @class */ (function () {
 //     new Card(1, Suit.Diamonds),
 // ]);
 var hand2 = new Hand([
-    new Card(4, Suit.Diamonds),
-    new Card(5, Suit.Diamonds),
-    new Card(6, Suit.Diamonds),
-    new Card(7, Suit.Diamonds),
-    new Card(8, Suit.Diamonds),
+    new Card(1, Suit.Diamonds),
+    new Card(1, Suit.Diamonds),
+    new Card(10, Suit.Diamonds),
+    new Card(12, Suit.Diamonds),
+    new Card(13, Suit.Diamonds),
 ]);
 // console.log(hand1.isFlush());
 // console.log(hand2.isFlush());

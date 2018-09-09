@@ -70,17 +70,43 @@ class Hand {
         return this.cards.every(c => c.suit === suit); // check array.every
     }
 
-    public isStraight (): boolean {
+    public isAceHighStraight () :boolean {
+        let low;
+        let high;
+        const ranks: number[] = [];
+
+        const cardRanks: number[] = this.cards.map(c => c.rank);
+        let firstIndexOfRank1 = cardRanks.indexOf(1);
+        cardRanks[firstIndexOfRank1] = 14;
+
+        low = high = cardRanks[0];
+
+        // check if duplicate rank exists
+        for (let i = 0; i < cardRanks.length; i++) {
+            if (cardRanks[i] === 1) cardRanks[i] = 14;
+
+            if (ranks.indexOf(cardRanks[i]) !== -1) return false;
+            ranks.push(cardRanks[i]);
+            
+            if (cardRanks[i] > high) high = cardRanks[i];
+            if (cardRanks[i] < low) low = cardRanks[i];
+        }
+
+        // check if poker straight
+        return high - low === 4;
+    }
+
+    public isAceLowStraight () :boolean {
         let low;
         let high;
         const ranks: number[] = [];
         
         low = high = this.cards[0].rank;
 
-        // check if duplicate ranks exist
-        for (let i = 1; i < this.cards.length; i++) {
+        // check if duplicate rank exists
+        for (let i = 0; i < this.cards.length; i++) {
             let rank = this.cards[i].rank;
-            
+
             if (ranks.indexOf(rank) !== -1) return false;
             ranks.push(rank);
             
@@ -91,6 +117,10 @@ class Hand {
 
         // check if poker straight
         return high - low === 4;
+    }
+
+    public isStraight (): boolean {
+        return this.isAceHighStraight() || this.isAceLowStraight();
     }
 
     // public getScore (): Score {
