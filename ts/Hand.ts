@@ -123,6 +123,22 @@ class Hand {
         return this.isAceHighStraight() || this.isAceLowStraight();
     }
 
+    public has (...ranks: number[]): boolean { // 注意這邊的rest operator的技巧，還有限定其type為number array
+        // 再熟悉array.some、array.every、array.splice
+
+        return this.cards.some(c => {
+            const rank = c.rank;
+            const indexCardRankInTheRanks = ranks.indexOf(rank);
+
+            if (indexCardRankInTheRanks !== -1) {
+                ranks.splice(indexCardRankInTheRanks, 1);
+            }
+
+            // 因為只要ranks空了就不用再繼續往下做了，與every相比較之
+            return ranks.length === 0;
+        });
+    }
+
     // public getScore (): Score {
     //     // flush: all cards with the same suit
     //     // straight: all cards of sequential rank

@@ -26,5 +26,9 @@ let hand2 = new Hand([
 // console.log(hand1.isFlush());
 // console.log(hand2.isFlush());
 
-console.log(hand2.isStraight());
+// console.log(hand2.isStraight());
+
+console.log(hand2.has(12, 13, 10));
+console.log(hand2.has(2, 13, 10));
+
 
