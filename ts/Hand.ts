@@ -75,6 +75,8 @@ class Kinds {
 
             this.kinds[rank].push(c);
         });
+
+        console.log(this.kinds);
     }
 
     public has (numOfKind: number): KindGroup {
@@ -184,6 +186,10 @@ class Hand {
             // 因為只要ranks空了就不用再繼續往下做了，與every相比較之
             return ranks.length === 0;
         });
+    }
+
+    public test () {
+        let kinds = new Kinds(this.cards);
     }
 
     // public getScore (): Score {
