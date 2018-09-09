@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outFile": "./js/app.js",
     "target": "es5",
-    "noImplicitThis": true,
+    "noImplicitThis": false, // to check this config in the ts doc.
     "strictNullChecks": true,
     "sourceMap": true
   },

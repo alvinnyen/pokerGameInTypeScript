@@ -64,78 +64,84 @@ class Hand {
         }
     }
 
-    public getScore (): Score {
-        // flush: all cards with the same suit
-        // straight: all cards of sequential rank
+    public isFlush (): boolean  {
+        let suit = this.cards[0].suit;
 
-        if (this.isFlush() && this.isStraight()) {
-            if (this.has(10, 11, 12, 13, 1)) {
-                // Royal Flush
-                return {
-                    handRank: HandRankings.Royal_FLUSH,
-                    scoringCards: this.cards,
-                }
-            };
-
-            // Straight Flush
-            return {
-                handRank: HandRankings.STRAIGHT_FLUSH,
-                scoringCards: this.cards,
-            };
-        }
-
-        if (this.has4()) {
-            return {
-                handRank: HandRankings.FOUR_OF_A_KIND,
-                scoringCards: ,
-            };
-        }
-
-        if (this.has3() && this.has2()) {
-            return {
-                handRank: HandRankings.FULL_HOUSE,
-                scoringCards: this.cards,
-            };
-        }
-
-        if (this.isFlush()) {
-            return {
-                handRank: HandRankings.FLUSH,
-                scoringCards: this.cards,
-            };
-        }
-
-        if (this.isStraight()) {
-            return {
-                handRank: HandRankings.STRAIGHT,
-                scoringCards: this.cards,
-            };
-        }
-
-        if (this.has3()) {
-            return {
-                handRank: HandRankings.THREE_OF_A_KIND,
-                scoringCards: this.cards,
-            }
-        }
-
-        if (this.has2Pair()) {
-            return {
-                handRank: HandRankings.TWO_PAIR,
-                scoringCards: this.cards,
-            }
-        }
-
-        if (this.has2() && this.jacksOrBetter()) {
-            return {
-                handRank: HandRankings.JACKS_OR_BETTER,
-                scoringCards: this.cards,
-            }
-        }
-
-        return {
-            handRank: HandRankings.NOTHING,
-            scoringCards: [],
-        }
+        return this.cards.every(c => c.suit === suit); // check array.every
     }
+
+    // public getScore (): Score {
+    //     // flush: all cards with the same suit
+    //     // straight: all cards of sequential rank
+
+    //     if (this.isFlush() && this.isStraight()) {
+    //         if (this.has(10, 11, 12, 13, 1)) {
+    //             // Royal Flush
+    //             return {
+    //                 handRank: HandRankings.Royal_FLUSH,
+    //                 scoringCards: this.cards,
+    //             }
+    //         };
+
+    //         // Straight Flush
+    //         return {
+    //             handRank: HandRankings.STRAIGHT_FLUSH,
+    //             scoringCards: this.cards,
+    //         };
+    //     }
+
+    //     if (this.has4()) {
+    //         return {
+    //             handRank: HandRankings.FOUR_OF_A_KIND,
+    //             scoringCards: ,
+    //         };
+    //     }
+
+    //     if (this.has3() && this.has2()) {
+    //         return {
+    //             handRank: HandRankings.FULL_HOUSE,
+    //             scoringCards: this.cards,
+    //         };
+    //     }
+
+    //     if (this.isFlush()) {
+    //         return {
+    //             handRank: HandRankings.FLUSH,
+    //             scoringCards: this.cards,
+    //         };
+    //     }
+
+    //     if (this.isStraight()) {
+    //         return {
+    //             handRank: HandRankings.STRAIGHT,
+    //             scoringCards: this.cards,
+    //         };
+    //     }
+
+    //     if (this.has3()) {
+    //         return {
+    //             handRank: HandRankings.THREE_OF_A_KIND,
+    //             scoringCards: this.cards,
+    //         }
+    //     }
+
+    //     if (this.has2Pair()) {
+    //         return {
+    //             handRank: HandRankings.TWO_PAIR,
+    //             scoringCards: this.cards,
+    //         }
+    //     }
+
+    //     if (this.has2() && this.jacksOrBetter()) {
+    //         return {
+    //             handRank: HandRankings.JACKS_OR_BETTER,
+    //             scoringCards: this.cards,
+    //         }
+    //     }
+
+    //     return {
+    //         handRank: HandRankings.NOTHING,
+    //         scoringCards: [],
+    //     }
+    // }
 }
