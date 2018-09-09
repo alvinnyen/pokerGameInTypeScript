@@ -197,78 +197,100 @@ class Hand {
         console.log(kinds.has(4));
     }
 
-    // public getScore (): Score {
-    //     // flush: all cards with the same suit
-    //     // straight: all cards of sequential rank
+    public getScore (): Score {
+        // flush: all cards with the same suit
+        // straight: all cards of sequential rank
 
-    //     if (this.isFlush() && this.isStraight()) {
-    //         if (this.has(10, 11, 12, 13, 1)) {
-    //             // Royal Flush
-    //             return {
-    //                 handRank: HandRankings.Royal_FLUSH,
-    //                 scoringCards: this.cards,
-    //             }
-    //         };
+        if (this.isFlush() && this.isStraight()) {
+            if (this.has(10, 11, 12, 13, 1)) {
+                // Royal Flush
+                return {
+                    handRank: HandRankings.ROYAL_FLUSH,
+                    scoringCards: this.cards,
+                }
+            };
 
-    //         // Straight Flush
-    //         return {
-    //             handRank: HandRankings.STRAIGHT_FLUSH,
-    //             scoringCards: this.cards,
-    //         };
-    //     }  
+            // Straight Flush
+            return {
+                handRank: HandRankings.STRAIGHT_FLUSH,
+                scoringCards: this.cards,
+            };
+        }  
 
-    //     if (this.has4()) {
-    //         return {
-    //             handRank: HandRankings.FOUR_OF_A_KIND,
-    //             scoringCards: ,
-    //         };
-    //     }
+        const kinds = new Kinds(this.cards);
+        const has4 = kinds.has(4);
 
-    //     if (this.has3() && this.has2()) {
-    //         return {
-    //             handRank: HandRankings.FULL_HOUSE,
-    //             scoringCards: this.cards,
-    //         };
-    //     }
+        if (has4) {
+            return {
+                handRank: HandRankings.FOUR_OF_A_KIND,
+                scoringCards: has4.cards,
+            };
+        }
 
-    //     if (this.isFlush()) {
-    //         return {
-    //             handRank: HandRankings.FLUSH,
-    //             scoringCards: this.cards,
-    //         };
-    //     }
+        const has3 = kinds.has(3);
+        const has2 = kinds.has(2);
+        if (has3 && has2) {
+            return {
+                handRank: HandRankings.FULL_HOUSE,
+                scoringCards: this.cards, // [...has3.cards, ...has2.cards], this.cards才更好...
+            };
+        }
 
-    //     if (this.isStraight()) {
-    //         return {
-    //             handRank: HandRankings.STRAIGHT,
-    //             scoringCards: this.cards,
-    //         };
-    //     }
+        if (has3) {
+            return {
+                handRank: HandRankings.THREE_OF_A_KIND,
+                scoringCards: has3.cards,
+            }
+        }
 
-    //     if (this.has3()) {
-    //         return {
-    //             handRank: HandRankings.THREE_OF_A_KIND,
-    //             scoringCards: this.cards,
-    //         }
-    //     }
+        if (this.isFlush()) {
+            return {
+                handRank: HandRankings.FLUSH,
+                scoringCards: this.cards,
+            };
+        }
 
-    //     if (this.has2Pair()) {
-    //         return {
-    //             handRank: HandRankings.TWO_PAIR,
-    //             scoringCards: this.cards,
-    //         }
-    //     }
+        if (this.isStraight()) {
+            return {
+                handRank: HandRankings.STRAIGHT,
+                scoringCards: this.cards,
+            };
+        }
 
-    //     if (this.has2() && this.jacksOrBetter()) {
-    //         return {
-    //             handRank: HandRankings.JACKS_OR_BETTER,
-    //             scoringCards: this.cards,
-    //         }
-    //     }
+        let all2 = kinds.all(2); // important to use Kinds.all
+        if (all2.length === 2) { // 非常重要，再check !!
+            return {
+                handRank: HandRankings.TWO_PAIR,
+                scoringCards: (() => {
+                    let cards: Card[] = [];
 
-    //     return {
-    //         handRank: HandRankings.NOTHING,
-    //         scoringCards: [],
-    //     }
-    // }
+                    // all2.forEach(kindGroup => {
+                    //     const kindGroupCards = kindGroup.cards;
+                    //     for (let i = 0; i < kindGroupCards.length; i++) {
+                    //         cards.push(kindGroupCards[i]);
+                    //     }
+                    // })
+
+                    // 超簡潔，練習使用array.concat
+                    all2.forEach(kindGroup => {
+                        cards = cards.concat(kindGroup.cards);
+                    });
+
+                    return cards;
+                })(),
+            }
+        }
+
+        if (has2 && (has2.rank >= 11 || has2.rank === 1)) { // all2已經把2個pairs的狀況過濾掉了，所以這邊不可能再出現2個pairs以上，頂多存在1個pair也就是has2
+            return {
+                handRank: HandRankings.JACKS_OR_BETTER,
+                scoringCards: has2.cards,
+            }
+        }
+
+        return {
+            handRank: HandRankings.NOTHING,
+            scoringCards: [],
+        }
+    }
 }
