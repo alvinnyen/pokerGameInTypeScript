@@ -77,7 +77,11 @@ class Kinds {
         });
     }
 
-    public has (numOfKind: number): KindGroup[] { // 有幾張一樣的
+    public has (numOfKind: number): KindGroup {
+        return this.all(numOfKind)[0]; // 只需要第一個元素來確定has, 確定kind是否存在 
+    }
+
+    public all (numOfKind: number): KindGroup[] { // 有幾張一樣的
         let result: KindGroup[] = [];
         const ranksInKinds = Object.keys(this.kinds);
 
