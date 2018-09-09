@@ -18,7 +18,7 @@
 let hand2 = new Hand([
     new Card(7, Suit.Diamonds),
     new Card(7, Suit.Clubs),
-    new Card(7, Suit.Hearts),
+    new Card(5, Suit.Hearts),
     new Card(12, Suit.Diamonds),
     new Card(12, Suit.Clubs),
 ]);

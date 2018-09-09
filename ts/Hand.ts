@@ -75,11 +75,9 @@ class Kinds {
 
             this.kinds[rank].push(c);
         });
-
-        console.log(this.kinds);
     }
 
-    public has (numOfKind: number): KindGroup {
+    public has (numOfKind: number): KindGroup | undefined { // will return undefined if doesn't have
         return this.all(numOfKind)[0]; // 只需要第一個元素來確定has, 確定kind是否存在 
     }
 
@@ -190,6 +188,13 @@ class Hand {
 
     public test () {
         let kinds = new Kinds(this.cards);
+        console.log(kinds.has(3)); 
+        console.log();
+        console.log(kinds.has(2));
+        console.log();
+        console.log(kinds.has(1));
+        console.log();
+        console.log(kinds.has(4));
     }
 
     // public getScore (): Score {
@@ -210,7 +215,7 @@ class Hand {
     //             handRank: HandRankings.STRAIGHT_FLUSH,
     //             scoringCards: this.cards,
     //         };
-    //     }
+    //     }  
 
     //     if (this.has4()) {
     //         return {
