@@ -166,3 +166,34 @@
             }
         }
     ```
+
+### setter and getter
+- using get and set keyword for creating a setter/getter in a convinient way
+- 用set/get 關鍵字可以創造方便的操做class property的setter/getter
+    - 方便的操作方式：讓你像操作class static property一樣來操作，而不是用function的形式來操作 
+        - 即使setter和getter是以function的形式來做定義
+- setter和getter可以設定為任意名稱，不一定要和作為操作對象的property name一樣
+- setter不能/沒必要設定回傳型態
+- ex.
+    ```
+        class Plant {
+            private _species: string = 'default';
+            
+            get species() {
+                return this.__species;
+            }
+            
+            set species(value: string) {
+                if (value.length > 3) {
+                    this._species = value;
+                }
+            }
+        }
+        
+        let plant = new Plant();
+        console.log(plant.species); // default
+        plant.species = 'AB'; 
+        console.log(plant.species); // default
+        plant.species = 'green species'; 
+        console.log(plant.species); // green species
+    ```

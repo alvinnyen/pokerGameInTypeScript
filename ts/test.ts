@@ -38,3 +38,23 @@ class TestEnum {
 new TestEnum(Color.Green);
 new TestEnum(1);
 */
+
+/** test TS Setter/Getter
+class TestSetterAndGetter {
+    private _prop1: string = 'yo';
+
+    public get prop21(): string {
+        return this._prop1;
+    }
+
+    public set propToSetToProp1(value: string) { // setter不能設定回傳型態
+        this._prop1 = value;
+    }
+}
+
+let testSetterAndGetter = new TestSetterAndGetter();
+console.log(testSetterAndGetter.prop21);
+testSetterAndGetter.propToSetToProp1 = 'hihi';
+console.log(testSetterAndGetter.prop21);
+*/
+
