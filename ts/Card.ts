@@ -14,7 +14,7 @@ class Card {
         this.suit = suit;
     }
 
-    private static rankNames = [ // why static ??
+    private static rankNames = [
         'Ace',
         '2',
         '3',
