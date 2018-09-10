@@ -12,7 +12,7 @@ class Deck {
     }
 
     public shuffle (): void {
-        // this.cards.sort(() => Math.floor(Math.random() * 3 - 1)); // ??? check the result of random
+        // this.cards.sort(() => Math.floor(Math.random() * 3 - 1));
 
         for (let i = this.cards.length - 1; i >= 0; i--) {
             const j = Math.floor(Math.random() * (i + 1) ); // why i+1 ?? => because of (i = 0) case

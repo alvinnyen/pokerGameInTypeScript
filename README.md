@@ -6,6 +6,16 @@
 - [TypeScript Tutorial](https://javabrains.thinkific.com/courses/typescript-basics)
 
 ## Note
+### Math.random()
+- x: [0, 1)
+    - 0 <= x < 1
+- y * x: z [0, y)
+    - 0 <= z < y
+    - i.e. 5 * x => [0, 5)
+        - x => 0.9999999...
+        - x * 5 => 4.99999...
+- 通常會再搭配 Math.floor 使用
+
 ### enum
 - concept
     - enums allow us to define a set of "named constants"
