@@ -1,6 +1,10 @@
 # Poker Game in TypeScript
 ## 專案說明
 
+## to study
+- [TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/docs/types/readonly.html)
+- [TypeScript Tutorial](https://javabrains.thinkific.com/courses/typescript-basics)
+
 ## Note
 ### enum
 - concept
@@ -112,4 +116,53 @@
         
         console.log(2 * Helpers.PI);
         console.log(Helpers.calcCircumference(8));
+    ```
+
+### Interface vs Type alias
+- to practice !!
+- [Interface vs Type alias in TypeScript 2.7](https://medium.com/@martin_hotell/interface-vs-type-alias-in-typescript-2-7-2a8f1777af4c)
+- [Typescript: Interfaces vs Types](https://fullstack-developer.academy/typescript-interfaces-vs-types/)
+- [Typescript: Interfaces vs Types on stackoverflow](https://stackoverflow.com/questions/37233735/typescript-interfaces-vs-types)
+
+### readonly modifier
+- [ref.: TypeScript Deep Dive: readonly](https://basarat.gitbooks.io/typescript/docs/types/readonly.html)
+- pros
+    - for avoiding unexpected mutation
+    - to practice !!
+-  to mark individual properties on an interface as readonly
+    ```
+        function foo(config: {
+            readonly bar: number,
+            readonly bas: number
+        }) {
+            // ..
+        }
+
+        let config = { bar: 123, bas: 123 };
+        foo(config);
+        // You can be sure that `config` isn't changed
+    ```
+- can use readonly in interface and type definitions as well
+    - [Interface vs Type alias in TypeScript 2.7](https://medium.com/@martin_hotell/interface-vs-type-alias-in-typescript-2-7-2a8f1777af4c)
+    ```
+        type Foo = {
+            readonly bar: number;
+            readonly bas: number;
+        }
+
+        // Initialization is okay
+        let foo: Foo = { bar: 123, bas: 456 };
+
+        // Mutation is not
+        foo.bar = 456; // Error: Left-hand side of assignment expression cannot be a constant or a read-only property
+    ```
+- can even declare a class property as readonly
+    ```
+        class Foo {
+            readonly bar = 1; // OK
+            readonly baz: string;
+            constructor() {
+                this.baz = "hello"; // OK
+            }
+        }
     ```
