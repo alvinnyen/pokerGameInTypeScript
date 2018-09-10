@@ -96,8 +96,8 @@
 - enum最後會被轉為 IIFE (Immediately Invoked Function Expression, 立即[執行]函式)
     - ![](https://i.imgur.com/32U8vPt.png)
 
-### static fields and methods
-- 相較於非static，static的可以讓你直接用.運算子存取、使用，而不用初始化該class (因為static fields and methods屬於class所有、只有一份，不會隨著instance的不同而有所改變)
+### class static property and methods
+- 相較於非static，static的可以讓你直接用.運算子存取、使用，而不用初始化該class (因為static propertyies and methods屬於class所有、只有一份，不會隨著instance的不同而有所改變)
 - i.e.
     ```
         class Helpers {
