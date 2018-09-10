@@ -7,7 +7,7 @@ enum Suit {
 
 class Card {
     public readonly rank: number;
-    public readonly suit: number; // why number ??
+    public readonly suit: number;
 
     public constructor (rank: number, suit: Suit) {
         this.rank = rank;
