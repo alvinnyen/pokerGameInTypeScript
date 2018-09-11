@@ -58,3 +58,85 @@ testSetterAndGetter.propToSetToProp1 = 'hihi';
 console.log(testSetterAndGetter.prop21);
 */
 
+/** test TS Interface, 1.1. Interfaces are capable of describing the wide range of shapes that JavaScript objects can take. 
+ * 
+ * " readonly "       for making sure that the property of a object can't be mutated
+ * " ? "              for optional property
+ * " [...]: ... "     for excess property
+ * 
+interface Person {
+    firstName: string,
+    lastName: string,
+};
+
+function greet (person: Person): void {
+    console.log(`hi ${person.lastName}, ${person.firstName}`);
+}
+
+function printMyFullName (person: Person): void {
+    console.log(`${person.lastName}, ${person.firstName}`);
+}
+
+let person1 = {
+    firstName: 'Alvin',
+    lastName: 'Yen'
+};
+
+greet(person1);
+
+// greet({ test: 'yoyoyo', firstName: 'tom' }); 
+// warn!! strict check will be applied when pass in a lieral object as an argument
+// undergo excess property checks
+
+printMyFullName(person1);
+*/
+
+// ------------------------------------------------------------------------------------
+
+/** test TS Interface, 1.2. about Excess Property Checks
+interface TestExtraProperties {
+    age: number;
+    testExtraProp1?: string; // test1
+    // [propName: string]: any; // test2, if we don't know the propertyName or type
+}
+
+function testExtraProperties (testObject: TestExtraProperties): void {
+    console.log(testObject.age);
+}
+
+let testObject1 = {
+    age: 20,
+    testExtraProp1: ''
+};
+
+testExtraProperties(testObject1);
+
+// test1
+testExtraProperties({
+    age: 20,
+    testExtraProp1: ''
+});
+
+// test2
+testExtraProperties({
+    age: 20,
+    testExtraProp1: '',
+    // testExtraProp2: 123 // check test2 in interface TestExtraProperties
+});
+*/
+
+// ------------------------------------------------------------------------------------
+
+/* test TS Interface, another example for the definition of unsure object key
+interface Test1 {
+    test1: string;
+}
+
+let obj: {
+    [x: string]: Test1
+} = {
+
+};
+
+console.log(obj);
+*/
