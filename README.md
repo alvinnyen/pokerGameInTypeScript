@@ -214,6 +214,15 @@
 - basic modifier
     -  `readonly`:    for making sure that the property of a object can't be mutated
     - `?`:            for optional property
+        ```
+            public constructor (cards?: Card[]) {
+                if (cards) { // 因為unsure ，所以必須做這層確認
+                    this.cards = cards;
+                } else {
+                    this.cards = [];
+                }
+            }
+        ```
     - `[...]: ... `:  for excess property
     - check the test.ts for detailed imformation
 ##### 1.1. the basic about interfaces
