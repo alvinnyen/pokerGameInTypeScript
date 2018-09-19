@@ -16,6 +16,32 @@
         - x * 5 => 4.99999...
 - 通常會再搭配 Math.floor 使用
 
+### 在function中應用array相關method及其回傳值型態定義
+- i. e.
+    ```
+        class Deck {
+            private cards: Card[];
+
+            ...
+
+            // 由於陣列為空的狀況下做slice會返回undefined
+            // 因此光定義回傳值為Card型態是不夠的
+
+            public draw (): Card {
+                // 1. 要馬針對回傳值一律強制轉成 Card
+                return <Card> this.cards.slice();
+
+                // 2. 或者將undefined加入至回傳值型態定義
+                // i.e. `public draw(): Card | undefined { ... } `
+            }
+
+            ...
+        }
+    ```
+- need to try 
+    - `強制轉型` with `$array.slice() empty array`
+
+
 ### enum
 - concept
     - enums allow us to define a set of "named constants"
@@ -207,6 +233,7 @@
         plant.species = 'green species'; 
         console.log(plant.species); // green species
     ```
+
 ### interface
 - interface可以應用在I. object的定義 (apply to object declaration or function paramter), II. function的定義 (Function Type), III. class的定義
 
@@ -387,7 +414,7 @@
         }
     ```
     - `Interfaces describe the public side of the class, rather than both the public and private side. This prohibits you from using them to check that a class also has particular types for the private side of the class instance.`
-- 結論
+- interface 結論
     - the interface is a contract which can be signed or which can be used as a type
     - and which then makes sure all conditions set up in the interface
     - so that property being a required one, that being one option or one and the method you're being required with that exact argument and return type.

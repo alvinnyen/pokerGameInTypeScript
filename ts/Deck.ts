@@ -20,7 +20,7 @@ class Deck {
         }
     }
 
-    public draw (): Card {
-        return <Card> this.cards.shift();
+    public draw (): Card | undefined {
+        return this.cards.shift();
     }
 }   
