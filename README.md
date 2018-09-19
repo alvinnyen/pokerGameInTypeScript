@@ -1,7 +1,8 @@
 # Poker Game in TypeScript
 ## 專案說明
+應用TypeScript完成的Poker Game Logic，主要藉由Poker Hand Rankings (Royal Flush, Straight Flush...etc.)的實作來熟悉TypeScript中OOP的相關操作。
 
-## to study
+## useful links
 - [TypeScript Deep Dive](https://basarat.gitbooks.io/typescript/docs/types/readonly.html)
 - [TypeScript Tutorial](https://javabrains.thinkific.com/courses/typescript-basics)
 
