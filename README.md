@@ -18,6 +18,8 @@
 - 通常會再搭配 Math.floor 使用
 
 ### 在function中應用array相關method及其回傳值型態定義
+- ref.
+    - [Preventing typescript from allowing undefined return](https://stackoverflow.com/questions/46738279/preventing-typescript-from-allowing-undefined-return)
 - i. e.
     ```
         class Deck {
@@ -41,7 +43,6 @@
     ```
 - need to try 
     - `強制轉型` with `$array.slice() empty array`
-
 
 ### enum
 - concept
