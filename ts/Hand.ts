@@ -60,13 +60,13 @@ interface KindGroup {
 
 class Kinds {
     private kinds: {
-        [rank: number]: Card[], // 再熟悉object property的type definition
+        [rank: number]: Card[]
     };
 
     public constructor (cards: Card[]) {
         this.kinds = {};
 
-        cards.forEach(c => { // 再check array.forEach 及 它的優缺點
+        cards.forEach(c => {
             const rank = c.rank;
 
             if (!this.kinds[rank]) {
@@ -81,7 +81,7 @@ class Kinds {
         return this.all(numOfKind)[0]; // 只需要第一個元素來確定has, 確定kind是否存在 
     }
 
-    public all (numOfKind: number): KindGroup[] { // 有幾張一樣的
+    public all (numOfKind: number): KindGroup[] {
         let result: KindGroup[] = [];
         const ranksInKinds = Object.keys(this.kinds);
 
@@ -104,7 +104,7 @@ class Hand {
     private cards: Card[];
 
     public constructor (cards?: Card[]) {
-        if (cards) { // 因為unsure ，所以必須做這層確認
+        if (cards) { // 因為unsure operator，所以必須做這層確認
             this.cards = cards;
         } else {
             this.cards = [];
@@ -114,7 +114,7 @@ class Hand {
     private isFlush (): boolean  {
         let suit = this.cards[0].suit;
 
-        return this.cards.every(c => c.suit === suit); // check array.every
+        return this.cards.every(c => c.suit === suit);
     }
 
     public isAceHighStraight () :boolean {
@@ -229,7 +229,7 @@ class Hand {
         if (has3 && has2) {
             return {
                 handRank: HandRankings.FULL_HOUSE,
-                scoringCards: this.cards, // [...has3.cards, ...has2.cards], this.cards才更好...
+                scoringCards: this.cards, // 相較於[...has3.cards, ...has2.cards], this.cards是更好的做法
             };
         }
 
@@ -254,8 +254,8 @@ class Hand {
             };
         }
 
-        let all2 = kinds.all(2); // important to use Kinds.all
-        if (all2.length === 2) { // 非常重要，再check !!
+        let all2 = kinds.all(2);
+        if (all2.length === 2) {
             return {
                 handRank: HandRankings.TWO_PAIR,
                 scoringCards: (() => {
@@ -268,7 +268,6 @@ class Hand {
                     //     }
                     // })
 
-                    // 超簡潔，練習使用array.concat
                     all2.forEach(kindGroup => {
                         cards = cards.concat(kindGroup.cards);
                     });
@@ -278,7 +277,7 @@ class Hand {
             }
         }
 
-        if (has2 && (has2.rank >= 11 || has2.rank === 1)) { // all2已經把2個pairs的狀況過濾掉了，所以這邊不可能再出現2個pairs以上，頂多存在1個pair也就是has2
+        if (has2 && (has2.rank >= 11 || has2.rank === 1)) {
             return {
                 handRank: HandRankings.JACKS_OR_BETTER,
                 scoringCards: has2.cards,
