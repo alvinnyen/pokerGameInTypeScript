@@ -9,7 +9,7 @@ interface Score {
 }
 
 let HandRankings: {
-    [x: string]: HandRank, // check object property type declaration in ts document
+    [x: string]: HandRank
 } = {
     ROYAL_FLUSH: {
         name: 'Royal Flush',
@@ -170,9 +170,7 @@ class Hand {
         return this.isAceHighStraight() || this.isAceLowStraight();
     }
 
-    public has (...ranks: number[]): boolean { // 注意這邊的rest operator的技巧，還有限定其type為number array
-        // 再熟悉array.some、array.every、array.splice
-
+    public has (...ranks: number[]): boolean { // the skill of rest operator and the declaration of number[] type
         return this.cards.some(c => {
             const rank = c.rank;
             const indexCardRankInTheRanks = ranks.indexOf(rank);
@@ -181,7 +179,6 @@ class Hand {
                 ranks.splice(indexCardRankInTheRanks, 1);
             }
 
-            // 因為只要ranks空了就不用再繼續往下做了，與every相比較之
             return ranks.length === 0;
         });
     }

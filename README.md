@@ -416,8 +416,20 @@
         }
     ```
     - `Interfaces describe the public side of the class, rather than both the public and private side. This prohibits you from using them to check that a class also has particular types for the private side of the class instance.`
-- interface 結論
+- conclusion
     - the interface is a contract which can be signed or which can be used as a type
     - and which then makes sure all conditions set up in the interface
     - so that property being a required one, that being one option or one and the method you're being required with that exact argument and return type.
     - all these conditions have to be fulfilled by whatever
+
+#### 4. the skill of Rest Parameters and its Type Definition
+- i.e.
+```
+function testNums (...nums: number[]) {
+    console.log(Array.isArray(nums)); // true
+}
+
+testNums(1, 2, 3, 4, 5);
+```
+
+
